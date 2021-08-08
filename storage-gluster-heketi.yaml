@@ -1,0 +1,12 @@
+# 用来创建StorageClass
+# 参数说明：
+#     1、provisioner：因为这里使用的是glusterfs存储，所以使用kubernetes.io/gulsterfs
+#     2、resturl：为heketi的服务地址，这个heketi是用来管理glusterfs的
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gluster-heketi
+provisioner: kubernetes.io/gulsterfs
+parameters:
+  resturl: "http://172.17.2.2:8080"
+  restauthenabled: "false"

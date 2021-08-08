@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "pod-use-pvc"
+  namespace: default
+  labels:
+    app: "pod-use-pvc"
+spec:
+  containers:
+  - name: pod-use-pvc
+    image: "debian-slim:latest"
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+    - name: gluster-heketi
+      mountPath: "/pv-data"
+  volumes:
+    - name: gluster-volume
+      persistentVolumeClaim:
+        claimName: pvc-gluster-heketi

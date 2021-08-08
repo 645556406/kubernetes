@@ -1,0 +1,16 @@
+# 创建PVC
+# 说明：未设置Selector,表示使用动态资源供应模式
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-gluster-heketi.
+  namespace: default
+  labels:
+    app: pvc-gluster-heketi.
+spec:
+  storageClassName: gluster-heketi
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
